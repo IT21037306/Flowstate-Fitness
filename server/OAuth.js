@@ -59,7 +59,7 @@ function isAuthenticated(req, res, next) {
 }
 
 // Example protected route that requires authentication
-app.get("/profile", isAuthenticated, (req, res) => {
+router.get("/profile", isAuthenticated, (req, res) => {
   res.send("Welcome to your profile!");
 });
 
