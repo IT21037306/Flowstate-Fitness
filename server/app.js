@@ -58,7 +58,7 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3030/home",
+    successRedirect: "http://localhost:3030/auth/google/callback",
     failureRedirect: "http://localhost:3030/login",
   })
 );

@@ -35,6 +35,9 @@ passport.use(
       // You can perform any necessary actions here, such as saving the user to the database
       // The user's profile information can be accessed via the `profile` parameter
       // Call `done()` to indicate that the authentication process is complete
+      profile.token = accessToken;
+      console.log(accessToken);
+
       done(null, profile);
     }
   )
@@ -76,6 +79,7 @@ router.get("/login/success", (req, res) => {
       success: true,
       message: "User has successfully authenticated.",
       user: req.user,
+      token: req.user.token,
       //cookies: req.cookies,
     });
   }
