@@ -57,6 +57,7 @@ import VeiwApp from "./pages/TrainerManagement/DisplayApplication";
 import Home from "./pages/Home";
 import UserCalendar from "./pages/PersonalTrainingManagement/UserCalendar";
 import DeletePayment from "./pages/PaymentManagement/DeletePayment";
+import GoogleCallback from "./pages/UserManagement/GoogleAuth";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -157,6 +158,10 @@ function App() {
                 <Route path="/forgot" element={<ForgetPassword />} />
                 <Route path="/user/applyTrainer" element={<ApplyTrainer />} />
                 <Route path="/home" element={<Home />} />
+                <Route
+                  path="/auth/google/callback"
+                  element={<GoogleCallback />}
+                />
               </Route>
             </Route>
 
@@ -171,7 +176,6 @@ function App() {
 
                 {/* Trainer Managment */}
                 <Route path="/user/trainers" element={<DisplayCards />} />
-
                 {/* Customer Relationship Management */}
                 <Route path="/user/addReviews" element={<AddReviews />} />
                 <Route path="/user/updateReviews" element={<UpdateReviews />} />
@@ -179,11 +183,9 @@ function App() {
                   path="/user/displayReviewUser"
                   element={<DisplayReviewsUser />}
                 />
-
                 {/* Product Management */}
                 <Route path="/user/productScreen" element={<ProductScreen />} />
                 <Route path="/user/cart" element={<Cart />} />
-
                 {/* Payment Management */}
                 {/* <Route path="/user/adminpayment" element={<AdminPayment />} /> */}
                 <Route path="/user/mnpayment" element={<MainPayment />} />
@@ -191,7 +193,6 @@ function App() {
                   path="/user/pay/:amount/:desc"
                   element={<MainPayment />}
                 />
-
                 {/* Personal Training Management */}
                 <Route path="/user/addSession" element={<AddSession />} />
                 <Route path="/user/usercal" element={<UserCalendar />} />
