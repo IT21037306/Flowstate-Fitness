@@ -17,12 +17,21 @@ import uploadImage from "./uploadImage.js";
 import session from "express-session";
 import router from "./OAuth.js";
 import passport from "passport";
+import helmet from "helmet";
 
 const app = express();
 
+const allowedOrigins = ["http://localhost:3030"];
+
 app.use(
   cors({
-    origin: "http://localhost:3030",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
@@ -40,7 +49,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set to true if using HTTPS
+    cookie: { secure: false },
   })
 );
 
