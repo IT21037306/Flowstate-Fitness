@@ -36,6 +36,7 @@ passport.use(
       // The user's profile information can be accessed via the `profile` parameter
       // Call `done()` to indicate that the authentication process is complete
       profile.token = accessToken;
+      profile.type = "user";
       console.log(accessToken);
 
       done(null, profile);
