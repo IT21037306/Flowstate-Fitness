@@ -21,6 +21,8 @@ import helmet from "helmet";
 
 const app = express();
 
+app.use(helmet());
+
 const allowedOrigins = ["http://localhost:3030"];
 
 app.use(
@@ -34,6 +36,26 @@ app.use(
     },
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"],
+  })
+);
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "http://localhost:3030"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "http://localhost:3030"],
+      connectSrc: ["'self'", "http://localhost:3030"],
+      fontSrc: ["'self'", "http://localhost:3030"],
+      objectSrc: ["'none'"],
+      frameSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
+      frameAncestors: ["'self'"],
+      scriptSrcAttr: ["'none'"],
+    },
   })
 );
 
